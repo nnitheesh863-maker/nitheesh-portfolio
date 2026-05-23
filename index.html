@@ -661,23 +661,20 @@
                 </a>
             </div>
             <div class="glass contact-form">
-                <form action="https://formsubmit.co/nnitheesh863@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="Portfolio Contact">
-                    <input type="hidden" name="_captcha" value="true">
-                    <input type="hidden" name="_template" value="table">
+                <form id="contactForm" onsubmit="return false;">
                     <div class="form-group">
                         <label class="form-label" for="name">Your Name</label>
-                        <input type="text" name="name" id="name" class="form-input" placeholder="John Doe" required>
+                        <input type="text" id="name" class="form-input" placeholder="John Doe" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="email">Your Email</label>
-                        <input type="email" name="email" id="email" class="form-input" placeholder="john@example.com" required>
+                        <input type="email" id="email" class="form-input" placeholder="john@example.com" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="message">Message</label>
-                        <textarea name="message" id="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+                        <textarea id="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
                     </div>
-                    <button type="submit" class="form-submit"><i class="fas fa-paper-plane"></i>&nbsp; Send Message</button>
+                    <button type="button" class="form-submit" onclick="sendMail()"><i class="fas fa-paper-plane"></i>&nbsp; Send Message</button>
                 </form>
             </div>
         </div>
@@ -798,6 +795,13 @@ function typeEffect(){
 setTimeout(typeEffect,1000);
 
 // ===== CONTACT FORM =====
+function sendMail(){
+    const n=document.getElementById('name').value;
+    const e=document.getElementById('email').value;
+    const m=document.getElementById('message').value;
+    if(!n||!e||!m) return alert('Please fill all fields');
+    window.location.href='mailto:nnitheesh863@gmail.com?subject=Portfolio Contact from '+encodeURIComponent(n)+'&body='+encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\nMessage:\n'+m);
+}
 // ===== PARALLAX AURORA =====
 window.addEventListener('scroll',()=>{
     const s=window.scrollY;
